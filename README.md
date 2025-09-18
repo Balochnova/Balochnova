@@ -1,6 +1,6 @@
 # Balochnova.ai 🚀
 
-My AI assistant app **Balochnova.ai** 🤖  
+My AI assistant app **Balochnova.ai** 🤖
 
 ## Features ✨
 - Smart AI responses  
