@@ -1,6 +1,13 @@
-# Balochnova.ai
+# Balochnova.ai 🚀
 
-My AI assistant app **Balochnova.ai** 🚀
+My AI assistant app **Balochnova.ai** 🤖  
 
-## License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+## Features ✨
+- Smart AI responses  
+- Easy to use interface  
+- Built with modern tools  
+
+## Installation ⚙️
+1. Clone this repo  
+   ```bash
+   git clone https://github.com/Balochnova/Balochnova.git
