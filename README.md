@@ -1,3 +1,5 @@
+![Logo](logo.jpg.page-0001.jpg)
+
 # Balochnova.ai 🚀
 
 My AI assistant app **Balochnova.ai** 🤖
