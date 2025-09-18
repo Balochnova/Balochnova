@@ -1,4 +1,7 @@
-![Logo](logo.jpg.page-0001.jpg)
+<p align="center">
+  <img src="logo.jpg" alt="Balochnova Logo" width="220"/>
+</p>
+
 
 # Balochnova.ai 🚀
 
