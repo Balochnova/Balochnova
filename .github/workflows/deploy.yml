@@ -1,59 +1,27 @@
-name: Deploy to GitHub Pages (gh-pages branch)
+name: Deploy Website
 
 on:
   push:
     branches:
-      - main
-      - master
-
-permissions:
-  contents: write
+      - main   # sirf main branch se deploy hoga
+  workflow_dispatch: # manually run karne ka option bhi
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Setup Node (optional)
-        uses: actions/setup-node@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          node-version: '18'
+          path: .   # index.html aur baki files repo ke root me hain
 
-      - name: Install dependencies if package.json exists
-        run: |
-          if [ -f package.json ]; then
-            npm ci
-          else
-            echo "No dependencies."
-          fi
-
-      - name: Build project if build script exists
-        run: |
-          if [ -f package.json ]; then
-            has_build=$(jq -r 'has("scripts") and (.scripts | has("build"))' package.json)
-            if [ "$has_build" = "true" ]; then
-              npm run build
-            else
-              echo "No build script."
-            fi
-          else
-            echo "No package.json"
-          fi
-
-      - name: Choose publish directory
-        id: choose
-        run: |
-          if [ -d build ]; then echo "publish_dir=build" >> $GITHUB_ENV
-          elif [ -d dist ]; then echo "publish_dir=dist" >> $GITHUB_ENV
-          elif [ -d public ]; then echo "publish_dir=public" >> $GITHUB_ENV
-          else echo "publish_dir=." >> $GITHUB_ENV
-          fi
-
-      - name: Deploy to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ${{ env.publish_dir }}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
