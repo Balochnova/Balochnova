@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages (gh-pages branch)
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node (optional)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies if package.json exists
+        run: |
+          if [ -f package.json ]; then
+            npm ci
+          else
+            echo "No dependencies."
+          fi
+
+      - name: Build project if build script exists
+        run: |
+          if [ -f package.json ]; then
+            has_build=$(jq -r 'has("scripts") and (.scripts | has("build"))' package.json)
+            if [ "$has_build" = "true" ]; then
+              npm run build
+            else
+              echo "No build script."
+            fi
+          else
+            echo "No package.json"
+          fi
+
+      - name: Choose publish directory
+        id: choose
+        run: |
+          if [ -d build ]; then echo "publish_dir=build" >> $GITHUB_ENV
+          elif [ -d dist ]; then echo "publish_dir=dist" >> $GITHUB_ENV
+          elif [ -d public ]; then echo "publish_dir=public" >> $GITHUB_ENV
+          else echo "publish_dir=." >> $GITHUB_ENV
+          fi
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ${{ env.publish_dir }}
