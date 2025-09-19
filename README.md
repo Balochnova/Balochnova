@@ -1,26 +1,29 @@
-# Balochnova.ai 🚀
-
-**Balochnova.ai** is a modern AI assistant app built to provide smart, simple, and user-friendly AI-powered responses.  
-It’s lightweight, fast, and designed with clean UI.
 
 ---
 
-## 🌟 Features
-- 🤖 Smart AI responses  
-- 🎨 Easy-to-use interface  
-- ⚡ Built with modern frontend tools (HTML + CSS)  
-- 📱 Mobile-friendly design  
+## 🚀 Deployment Process
+1. Push changes to `main` (or `master`) branch.  
+2. GitHub Actions automatically runs the workflow.  
+3. A `gh-pages` branch is created/updated.  
+4. Your site goes live at:  
+
+👉 **Live URL:**  
+https://balochnova.github.io/balochnova.ai/
 
 ---
 
-## 🖼️ Preview
-![Logo](./logo.jpg)
+## 🖼 Customization
+- Replace `assets/logo-placeholder.png` with your own logo.  
+- Update `index.html` with your site content.  
+- If you’re using React/Vue/Next, make sure your build output is in `build/`, `dist/`, or `public/`.
 
 ---
 
-## ⚙️ Installation
-Clone this repository and explore the project locally:
+## 🤝 Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
-```bash
-git clone https://github.com/Balochnova/Balochnova.git
-cd Balochnova/frontend
+---
+
+## 📜 License
+This project is licensed under the MIT License.  
+You are free to use and modify this project for personal or commercial purposes.
